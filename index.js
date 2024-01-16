@@ -61,6 +61,16 @@ function writeToFile(fileName, data) {
 
 // function to initialize program
 function init() {
+    inquirer.prompt(questions)
+    .then((userInput) => {
+      const readmeContent = generateMarkdown(userInput);
+      const outputPath = path.resolve(__dirname, 'README.md');
+      writeToFile(outputPath, readmeContent);
+      console.log('README.md file generated successfully!');
+    })
+    .catch((error) => {
+      console.error('Error occurred:', error);
+    });
 
 }
 
